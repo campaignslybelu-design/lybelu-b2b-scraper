@@ -43,28 +43,22 @@ services:
         value: "1200"
       - key: MAX_CONCURRENCY
         value: "6"
-  - type: worker
+    - type: worker
     name: lybelu-verifier-worker
     env: node
     plan: starter
     buildCommand: npm install
     startCommand: node verifier.worker.js
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: lybelu-leads-db
-          property: connectionString
-      - key: REDIS_URL
-        fromService:
-          name: lybelu-redis
-          type: redis
-          property: connectionString
-      - key: EMAIL_VERIFY_API_KEY
-        sync: false
+
+  - type: redis
+    name: lybelu-redis
+    plan: free
+
 databases:
   - name: lybelu-leads-db
     plan: free
     ipAllowList: []
+
 
 
   
