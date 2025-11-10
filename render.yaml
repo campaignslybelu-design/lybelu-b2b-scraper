@@ -10,15 +10,19 @@ services:
         fromDatabase:
           name: lybelu-leads-db
           property: connectionString
+
       - key: REDIS_URL
         fromService:
           name: lybelu-redis
           type: redis
           property: connectionString
+
       - key: CRAWL_USER_AGENT
         value: "LybeluLeadsBot/1.0 (+contact@lybelufoods.com)"
+
       - key: CRAWL_RATE_MS
         value: "1200"
+
       - key: MAX_CONCURRENCY
         value: "6"
 
@@ -33,17 +37,12 @@ services:
         fromDatabase:
           name: lybelu-leads-db
           property: connectionString
+
       - key: REDIS_URL
         fromService:
           name: lybelu-redis
           type: redis
           property: connectionString
-      - key: CRAWL_USER_AGENT
-        value: "LybeluLeadsBot/1.0 (+contact@lybelufoods.com)"
-      - key: CRAWL_RATE_MS
-        value: "1200"
-      - key: MAX_CONCURRENCY
-        value: "6"
 
   - type: worker
     name: lybelu-verifier-worker
@@ -56,16 +55,17 @@ services:
         fromDatabase:
           name: lybelu-leads-db
           property: connectionString
+
       - key: REDIS_URL
         fromService:
           name: lybelu-redis
           type: redis
           property: connectionString
-      # Add your API key in Render later (Service → Environment)
-      - key: EMAIL_VERIFY_API_KEY
-        value: ""
 
-    - type: redis
+      - key: EMAIL_VERIFY_API_KEY
+        sync: false
+
+  - type: redis
     name: lybelu-redis
     plan: starter
     ipAllowList: []
@@ -74,4 +74,3 @@ databases:
   - name: lybelu-leads-db
     plan: starter
     ipAllowList: []
-
