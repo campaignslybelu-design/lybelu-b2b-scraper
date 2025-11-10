@@ -5,27 +5,26 @@ services:
     plan: starter
     buildCommand: npm install
     startCommand: node server.js
-envVars:
-  - key: DATABASE_URL
-    fromDatabase:
-      name: lybelu-leads-db
-      property: connectionString
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lybelu-leads-db
+          property: connectionString
 
-  - key: REDIS_URL
-    fromService:
-      name: lybelu-redis
-      type: redis
-      property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: lybelu-redis
+          type: redis
+          property: connectionString
 
-  - key: CRAWL_USER_AGENT
-    value: "LybeluLeadsBot/1.0 (+contact@lybelufoods.com)"
+      - key: CRAWL_USER_AGENT
+        value: "LybeluLeadsBot/1.0 (+contact@lybelufoods.com)"
 
-  - key: CRAWL_RATE_MS
-    value: "1200"
+      - key: CRAWL_RATE_MS
+        value: "1200"
 
-  - key: MAX_CONCURRENCY
-    value: "6"
-
+      - key: MAX_CONCURRENCY
+        value: "6"
 
   - type: worker
     name: lybelu-crawler-worker
@@ -34,32 +33,43 @@ envVars:
     buildCommand: npm install
     startCommand: node crawler.worker.js
     envVars:
-  - key: DATABASE_URL
-    fromDatabase:
-      name: lybelu-leads-db
-      property: connectionString
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lybelu-leads-db
+          property: connectionString
 
-  - key: REDIS_URL
-    fromService:
-      name: lybelu-redis
-      type: redis
-      property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: lybelu-redis
+          type: redis
+          property: connectionString
 
-  - key: CRAWL_USER_AGENT
-    value: "LybeluLeadsBot/1.0 (+contact@lybelufoods.com)"
+      - key: CRAWL_USER_AGENT
+        value: "LybeluLeadsBot/1.0 (+contact@lybelufoods.com)"
 
-  - key: CRAWL_RATE_MS
-    value: "1200"
+      - key: CRAWL_RATE_MS
+        value: "1200"
 
-  - key: MAX_CONCURRENCY
-    value: "6"
+      - key: MAX_CONCURRENCY
+        value: "6"
 
-    - type: worker
+  - type: worker
     name: lybelu-verifier-worker
     env: node
     plan: starter
     buildCommand: npm install
     startCommand: node verifier.worker.js
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lybelu-leads-db
+          property: connectionString
+
+      - key: REDIS_URL
+        fromService:
+          name: lybelu-redis
+          type: redis
+          property: connectionString
 
   - type: redis
     name: lybelu-redis
@@ -69,7 +79,3 @@ databases:
   - name: lybelu-leads-db
     plan: free
     ipAllowList: []
-
-
-
-  
