@@ -5,23 +5,33 @@
 }
 {
   "name": "lybelu-b2b-scraper",
-  "version": "1.1.0",
-  "description": "Render-ready B2B email scraper with queue, verification, CSV export, and mini dashboard",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "Nationwide B2B Email Scraper with Dashboard for Lybelu Campaigns",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "worker:crawler": "node crawler.worker.js",
-    "worker:verifier": "node verifier.worker.js"
+    "crawler": "node crawler.worker.js",
+    "verifier": "node verifier.worker.js"
   },
   "dependencies": {
-    "bullmq": "^5.7.8",
-    "cheerio": "^1.0.0",
-    "csv-stringify": "^6.4.5",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
     "express": "^4.18.2",
-    "ioredis": "^5.3.2",
-    "node-fetch": "^3.3.2",
-    "p-limit": "^5.0.0",
-    "pg": "^8.11.3",
-    "robots-txt-parse": "^1.0.4"
-  }
+    "mongoose": "^7.6.3",
+    "redis": "^4.6.7",
+    "dotenv": "^16.3.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/campaignslybelu-design/lybelu-b2b-scraper"
+  },
+  "author": "Lybelu Automation Team",
+  "license": "MIT"
 }
