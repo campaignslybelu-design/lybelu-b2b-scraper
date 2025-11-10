@@ -1,7 +1,14 @@
 import pkg from 'pg';
 const { Pool } = pkg;
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const useSSL =
+  !!process.env.DATABASE_URL &&
+  (process.env.PGSSLMODE === 'require' || process.env.NODE_ENV === 'production');
+
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: useSSL ? { rejectUnauthorized: false } : undefined,
+});
 
 export async function ensureSchema() {
   await pool.query(`
