@@ -65,6 +65,7 @@ databases:
   - name: lybelu-leads-db
     plan: standard
     ipAllowList: []
-redis:
-  - name: lybelu-redis
+services:
+  - type: redis
+    name: lybelu-redis
     plan: standard
