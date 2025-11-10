@@ -65,8 +65,5 @@ databases:
   - name: lybelu-leads-db
     plan: standard
     ipAllowList: []
-services:
-  services:
-  - type: web
-    name: lybelu-scraper-api
 
+  
