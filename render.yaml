@@ -52,18 +52,19 @@ services:
     buildCommand: npm install
     startCommand: node verifier.worker.js
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: lybelu-leads-db
-          property: connectionString
-      - key: REDIS_URL
-        fromService:
-          name: lybelu-redis
-          type: redis
-          property: connectionString
-      - key: EMAIL_VERIFY_API_KEY
-        # Add the key value later in the service's Environment if you prefer
-        sync: false
+  - key: DATABASE_URL
+    fromDatabase:
+      name: lybelu-leads-db
+      property: connectionString
+
+  - key: REDIS_URL
+    fromService:
+      name: lybelu-redis
+      type: redis
+      property: connectionString
+
+  - key: EMAIL_VERIFY_API_KEY
+    sync: false
 
     - type: redis
     name: lybelu-redis
