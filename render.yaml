@@ -65,11 +65,13 @@ services:
         # Add the key value later in the service's Environment if you prefer
         sync: false
 
-  - type: redis
+    - type: redis
     name: lybelu-redis
     plan: free
+    ipAllowList: []
 
 databases:
   - name: lybelu-leads-db
     plan: free
     ipAllowList: []
+
