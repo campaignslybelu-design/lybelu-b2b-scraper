@@ -1,0 +1,85 @@
+{
+  "info": {
+    "name": "Lybelu B2B Scraper",
+    "_postman_id": "b2b-scraper-collection",
+    "description": "API calls for enqueue, crawl, verify trigger, stats, and export.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{BASE_URL}}/health"
+      }
+    },
+    {
+      "name": "Enqueue (bulk)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"urls\": [\n    \"https://example1.com\",\n    \"https://example2.com\"\n  ]\n}"
+        },
+        "url": "{{BASE_URL}}/enqueue"
+      }
+    },
+    {
+      "name": "Crawl (single)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://example.com\"\n}"
+        },
+        "url": "{{BASE_URL}}/crawl"
+      }
+    },
+    {
+      "name": "Stats",
+      "request": {
+        "method": "GET",
+        "url": "{{BASE_URL}}/stats"
+      }
+    },
+    {
+      "name": "Recent",
+      "request": {
+        "method": "GET",
+        "url": "{{BASE_URL}}/recent?limit=25"
+      }
+    },
+    {
+      "name": "Trigger Nightly Verify",
+      "request": {
+        "method": "POST",
+        "url": "{{BASE_URL}}/jobs/nightly-verify"
+      }
+    },
+    {
+      "name": "Export CSV",
+      "request": {
+        "method": "GET",
+        "url": "{{BASE_URL}}/export.csv"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
