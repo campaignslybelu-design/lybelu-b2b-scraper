@@ -65,13 +65,13 @@ services:
       - key: EMAIL_VERIFY_API_KEY
         value: ""
 
-  - type: redis
+    - type: redis
     name: lybelu-redis
-    plan: free
+    plan: starter
     ipAllowList: []
 
 databases:
   - name: lybelu-leads-db
-    plan: free
+    plan: starter
     ipAllowList: []
 
