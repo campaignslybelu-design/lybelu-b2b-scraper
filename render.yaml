@@ -63,7 +63,7 @@ services:
         sync: false
 databases:
   - name: lybelu-leads-db
-    plan: standard
+    plan: starter
     ipAllowList: []
 
   
