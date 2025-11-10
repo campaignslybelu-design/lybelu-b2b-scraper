@@ -66,6 +66,7 @@ databases:
     plan: standard
     ipAllowList: []
 services:
-  - type: redis
-    name: lybelu-redis
-    plan: standard
+  services:
+  - type: web
+    name: lybelu-scraper-api
+
